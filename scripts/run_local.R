@@ -1,0 +1,6 @@
+if (.Platform$OS.type == "windows" && !l10n_info()[["UTF-8"]])
+  Sys.setlocale("LC_CTYPE", ".UTF-8")
+stopifnot(file.exists("app.R"))
+if (dir.exists(".Rlibrary")) .libPaths(c(normalizePath(".Rlibrary"), .libPaths()))
+if (!requireNamespace("shiny", quietly = TRUE)) stop("Сначала выполните source('scripts/setup.R').")
+shiny::runApp(".", host = "127.0.0.1", launch.browser = interactive())
